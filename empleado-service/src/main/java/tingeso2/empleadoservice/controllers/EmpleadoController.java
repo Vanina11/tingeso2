@@ -7,7 +7,7 @@ import tingeso2.empleadoservice.services.EmpleadoService;
 
 import java.util.List;
 
-@RestControllerlocalhost:50386/empleado
+@RestController
 @RequestMapping("/empleado")
 public class EmpleadoController {
     @Autowired

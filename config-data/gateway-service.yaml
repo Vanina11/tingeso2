@@ -21,4 +21,20 @@ spring:
           uri: lb://empleado-service
           predicates:
             - Path=/empleado/**
+        - id: justificativo-service
+          uri: lb://justificativo-service
+          predicates:
+            - Path=/justificativo/**
+        - id: sueldos-service
+          uri: lb://sueldos-service
+          predicates:
+            - Path=/sueldos/**
+        - id: autorizacion-service
+          uri: lb://autorizacion-service
+          predicates:
+            - Path=/autorizacion/**
+        - id: marcas-reloj-service
+          uri: lb://marcas-reloj-service
+          predicates:
+            - Path=/marcas-reloj/**
         

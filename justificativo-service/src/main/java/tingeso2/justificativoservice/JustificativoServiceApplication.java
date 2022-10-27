@@ -1,4 +1,4 @@
-package tingeso2.sueldosservice;
+package tingeso2.justificativoservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class SueldosServiceApplication {
+public class JustificativoServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SueldosServiceApplication.class, args);
+		SpringApplication.run(JustificativoServiceApplication.class, args);
 	}
 
 }

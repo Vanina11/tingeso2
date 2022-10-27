@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: marcas-reloj-service
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+  datasource:
+    url: jdbc:postgresql://localhost:5432/marcas-reloj
+    username: postgres
+    password: 123
+  jpa:
+    hibernate:
+      ddl-auto: update
