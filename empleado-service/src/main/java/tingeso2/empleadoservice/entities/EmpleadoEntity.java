@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "empleado")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,7 +16,6 @@ public class EmpleadoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    // Datos desde el archivo excel
     private String rut;
     private String nombres;
     private String apellidos;
@@ -25,4 +24,5 @@ public class EmpleadoEntity {
     private String fechaIngreso;
     private Integer inasistencias = 0;
     private Integer descuentoAtraso = 0;
+
 }
