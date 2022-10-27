@@ -16,5 +16,9 @@ spring:
       discovery:
         locator:
           enabled: true
-      #routes:
+      routes:
+        - id: empleado-service
+          uri: lb://empleado-service
+          predicates:
+            - Path=/empleado/**
         
