@@ -1,12 +1,12 @@
 spring:
   application:
-    name: empleado-service
+    name: justificativo-service
   cloud:
     config:
       enabled: true
       uri: http://localhost:8081
   datasource:
-    url: jdbc:postgresql://localhost:5432/empleados
+    url: jdbc:postgresql://localhost:5432/justificativos
     username: postgres
     password: 123
   jpa:
