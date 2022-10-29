@@ -122,4 +122,7 @@ public class MarcasRelojService {
         }
     }
 
+    public MarcasRelojEntity marcaRelojPorFechaYRut(String fecha, String rut) {
+        return marcasRelojRepository.findByFechaAndRutEmpleado(fecha, rut);
+    }
 }

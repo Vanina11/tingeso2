@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import tingeso2.marcasrelojservice.entities.MarcasRelojEntity;
 import tingeso2.marcasrelojservice.services.FileResponse;
 import tingeso2.marcasrelojservice.services.FileStorageService;
 import tingeso2.marcasrelojservice.services.MarcasRelojService;
@@ -30,5 +31,14 @@ public class FileController {
         FileResponse fileResponse = new FileResponse(fileName, fileDownloadUri, file.getContentType(), file.getSize());
         marcasRelojService.guardarMarcasReloj(file);
         return new ResponseEntity<FileResponse>(fileResponse,HttpStatus.OK);
+    }
+
+    @GetMapping("{fecha}/{rut}")
+    public ResponseEntity<MarcasRelojEntity> obtenerMarcasRelojPorFechaYEmpleado(@PathVariable String fecha, @PathVariable String rut){
+        MarcasRelojEntity marca = marcasRelojService.marcaRelojPorFechaYRut(fecha, rut);
+        if(marca == null){
+            return new ResponseEntity<MarcasRelojEntity>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(marca);
     }
 }

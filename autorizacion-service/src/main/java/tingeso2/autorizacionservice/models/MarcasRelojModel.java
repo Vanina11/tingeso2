@@ -1,4 +1,4 @@
-package tingeso2.justificativoservice.models;
+package tingeso2.autorizacionservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
