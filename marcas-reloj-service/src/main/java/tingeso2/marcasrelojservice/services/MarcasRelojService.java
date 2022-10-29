@@ -71,7 +71,7 @@ public class MarcasRelojService {
         String rut = datos[2];
         // Si el empleado existe, se crea la marca de reloj
         EmpleadoModel empleado = empleadoService.empleadoPorRut(rut);
-        MarcasRelojEntity marcas = marcasRelojRepository.findByFechaAndRut(fecha, rut);
+        MarcasRelojEntity marcas = marcasRelojRepository.findByFechaAndRutEmpleado(fecha, rut);
         if (empleado != null){
             if(marcas == null) {
                 crearMarcaReloj(fecha, hora, rut);
@@ -90,9 +90,9 @@ public class MarcasRelojService {
         marcaReloj.setHora(hora);
         marcaReloj.setRutEmpleado(empleado.getRut());
         if(!Objects.equals(descuento, DESCUENTO_4)){
-            //empleadoService.incrementaDescuentoAtraso(empleado, descuento);
+            empleadoService.incrementaDescuentoAtraso(empleado, descuento);
         }else {
-            //empleadoService.incrementaInasistencias(empleado);
+            empleadoService.incrementaInasistencias(empleado);
         }
         marcasRelojRepository.save(marcaReloj);
     }
@@ -101,6 +101,7 @@ public class MarcasRelojService {
         String[] horaMinuto = hora.split(":");
         Integer horaInt = Integer.parseInt(horaMinuto[0]);
         Integer minutoInt = Integer.parseInt(horaMinuto[1]);
+
         if(horaInt <= HORA_LLEGADA && minutoInt <= MINUTO_LLEGADA){
             return 0;
         } else {

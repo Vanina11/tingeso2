@@ -5,19 +5,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tingeso2.marcasrelojservice.models.EmpleadoModel;
 
-import java.util.List;
-
 @Service
 public class EmpleadoService {
     @Autowired
     RestTemplate restTemplate;
 
-    public List<EmpleadoModel> getEmpleados(){
-        return restTemplate.getForObject("http://empleado", List.class);
+    public EmpleadoModel empleadoPorRut(String rut){
+        return restTemplate.getForObject("http://empleado-service/empleado/" + rut, EmpleadoModel.class);
     }
 
-    public EmpleadoModel empleadoPorRut(String rut){
-        return restTemplate.getForObject("http://empleado/" + rut, EmpleadoModel.class);
+    public void incrementaDescuentoAtraso(EmpleadoModel empleado, Integer descuento){
+        empleado.setDescuentoAtraso(empleado.getDescuentoAtraso() + descuento);
+        restTemplate.put("http://empleado-service/empleado/incrementa-atrasos/" + empleado.getRut(), empleado, EmpleadoModel.class);
+    }
+
+    public void incrementaInasistencias(EmpleadoModel empleado){
+        empleado.setInasistencias(empleado.getInasistencias() + 1);
+        restTemplate.put("http://empleado-service/empleado/incrementa-inasistencias/", empleado.getRut(), empleado, EmpleadoModel.class);
     }
 
 }

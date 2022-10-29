@@ -19,6 +19,5 @@ public class MarcasRelojEntity {
     private String fecha;
     private String hora;
     private String horaSalida;
-    private boolean inasistencia; //
     private String rutEmpleado;
 }

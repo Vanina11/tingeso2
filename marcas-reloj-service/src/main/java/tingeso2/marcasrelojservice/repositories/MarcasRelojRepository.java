@@ -6,6 +6,6 @@ import tingeso2.marcasrelojservice.entities.MarcasRelojEntity;
 
 @Repository
 public interface MarcasRelojRepository extends JpaRepository<MarcasRelojEntity, Long> {
-    MarcasRelojEntity findByFechaAndRut(String fecha, String rut);
+    MarcasRelojEntity findByFechaAndRutEmpleado(String fecha, String rutEmpleado);
 }
 

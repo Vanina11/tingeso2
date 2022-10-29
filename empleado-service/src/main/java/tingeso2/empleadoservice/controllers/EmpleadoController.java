@@ -29,6 +29,22 @@ public class EmpleadoController {
             return ResponseEntity.notFound().build();
         return ResponseEntity.ok(empleado);
     }
+
+    @PutMapping("/incrementa-atrasos/{rut}")
+    public ResponseEntity<EmpleadoEntity> incrementaDescuentoAtraso(@PathVariable("rut") String rut, @RequestBody EmpleadoEntity empleadoActualizado){
+        EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
+        empleado.setDescuentoAtraso(empleadoActualizado.getDescuentoAtraso());
+        empleadoService.guardarEmpleado(empleado);
+        return ResponseEntity.ok(empleado);
+    }
+
+    @PutMapping("/incrementa-inasistencias/{rut}")
+    public ResponseEntity<EmpleadoEntity> incrementaInasistencias(@PathVariable("rut") String rut, @RequestBody EmpleadoEntity empleadoActualizado){
+        EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
+        empleado.setInasistencias(empleadoActualizado.getInasistencias());
+        empleadoService.guardarEmpleado(empleado);
+        return ResponseEntity.ok(empleado);
+    }
     @PostMapping
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
