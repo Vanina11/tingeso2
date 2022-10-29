@@ -12,3 +12,13 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+
+file:
+  upload-dir: ./src/main/resources/cargas
