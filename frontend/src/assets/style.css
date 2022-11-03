@@ -1,0 +1,39 @@
+:root {
+    --fondo: #F2EFEB;
+    --nav: #819FA6;
+    --texto: #1F2024;
+    --card: #BFB7B0;
+    --boton: #8C7974;
+    --cafe:#593D36;
+}
+
+.navbar {
+    background-color: var(--nav);
+}
+
+.home {
+  background-color: var(--fondo);
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+}
+
+.card {
+    background-color: var(--card) !important;
+    width: 300px;
+    margin: 80px;
+}
+
+.boton {
+    background-color: var(--boton) !important;
+    border-color: var(--boton) !important;
+}
+
+.boton:hover {
+    background-color: var(--cafe) !important;
+}
+
+.upload{
+    filter: invert(1);
+}
