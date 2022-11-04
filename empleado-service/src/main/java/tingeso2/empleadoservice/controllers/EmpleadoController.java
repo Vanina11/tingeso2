@@ -6,15 +6,18 @@ import org.springframework.web.bind.annotation.*;
 import tingeso2.empleadoservice.entities.EmpleadoEntity;
 import tingeso2.empleadoservice.services.EmpleadoService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
 @RequestMapping("/empleado")
+@CrossOrigin(origins = "*")
 public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
 
     @GetMapping
+    //@RolesAllowed("admin")
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
         List<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         if(empleados.isEmpty())
@@ -23,6 +26,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{rut}")
+    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> obtenerPorRut(@PathVariable("rut") String rut){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         if(empleado == null)
@@ -31,6 +35,7 @@ public class EmpleadoController {
     }
 
     @PutMapping("/incrementa-atrasos/{rut}")
+    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> incrementaDescuentoAtraso(@PathVariable("rut") String rut, @RequestBody EmpleadoEntity empleadoActualizado){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         empleado.setDescuentoAtraso(empleadoActualizado.getDescuentoAtraso());
@@ -39,6 +44,7 @@ public class EmpleadoController {
     }
 
     @PutMapping("/incrementa-inasistencias/{rut}")
+    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> incrementaInasistencias(@PathVariable("rut") String rut, @RequestBody EmpleadoEntity empleadoActualizado){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         empleado.setInasistencias(empleadoActualizado.getInasistencias());
@@ -46,7 +52,14 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleado);
     }
     @PostMapping
+    @RolesAllowed("admin")
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
+    }
+
+    @GetMapping("/e")
+    @RolesAllowed("admin")
+    public List<EmpleadoEntity> obteneEmpleados(){
+        return empleadoService.obtenerEmpleados();
     }
 }

@@ -11,6 +11,7 @@ public class MarcasRelojService {
     RestTemplate restTemplate;
 
     public MarcasRelojModel obtenerMarcaRelojPorFechaYEmpleado(String fecha, String rut){
-        return restTemplate.getForObject("http://marcasreloj-service/marcasreloj/" + fecha + "/" + rut, MarcasRelojModel.class);
+        String fecha2 = fecha.replace("/", "-");
+        return restTemplate.getForObject("http://marcas-reloj-service/marcas-reloj/" + fecha2 + "/" + rut, MarcasRelojModel.class);
     }
 }

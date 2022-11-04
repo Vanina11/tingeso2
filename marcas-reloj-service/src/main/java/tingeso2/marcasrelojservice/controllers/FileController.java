@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tingeso2.marcasrelojservice.entities.MarcasRelojEntity;
+import tingeso2.marcasrelojservice.repositories.MarcasRelojRepository;
 import tingeso2.marcasrelojservice.services.FileResponse;
 import tingeso2.marcasrelojservice.services.FileStorageService;
 import tingeso2.marcasrelojservice.services.MarcasRelojService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/marcas-reloj")
@@ -33,12 +36,17 @@ public class FileController {
         return new ResponseEntity<FileResponse>(fileResponse,HttpStatus.OK);
     }
 
-    @GetMapping("{fecha}/{rut}")
+    @GetMapping("/{fecha}/{rut}")
     public ResponseEntity<MarcasRelojEntity> obtenerMarcasRelojPorFechaYEmpleado(@PathVariable String fecha, @PathVariable String rut){
-        MarcasRelojEntity marca = marcasRelojService.marcaRelojPorFechaYRut(fecha, rut);
-        if(marca == null){
-            return new ResponseEntity<MarcasRelojEntity>(HttpStatus.NOT_FOUND);
-        }
+        String fecha2 = fecha.replace("-","/");
+        MarcasRelojEntity marca = marcasRelojService.marcaRelojPorFechaYRut(fecha2, rut);
         return ResponseEntity.ok(marca);
+    }
+
+    @Autowired
+    MarcasRelojRepository marcasRelojRepository;
+    @GetMapping
+    public List<MarcasRelojEntity> obtenerMarcasReloj(){
+        return marcasRelojRepository.findAll();
     }
 }
