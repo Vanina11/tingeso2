@@ -4,6 +4,7 @@ import CargarArchivoComponent from "./components/CargarArchivoComponent";
 import IngresarJustificativoComponent from "./components/IngresarJustificativoComponent";
 import IngresarAutorizacionComponent from "./components/IngresarAutorizacionComponent";
 import InicioComponent from "./components/InicioComponent";
+import CalcularSueldosComponent from "./components/CalcularSueldosComponent";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/cargar-archivo" element={<CargarArchivoComponent />} />
           <Route path="/ingresar-justificativo" element={<IngresarJustificativoComponent />} />
           <Route path="/ingresar-autorizacion" element={<IngresarAutorizacionComponent />} />
+          <Route path="/calcular-sueldos" element={<CalcularSueldosComponent />} />
         </Routes>
       </BrowserRouter>
     </div>

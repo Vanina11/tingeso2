@@ -42,4 +42,8 @@ public class JustificativoService {
         return justificativoRepository.findAll();
     }
 
+    public List<JustificativoEntity> obtenerJustificativoPorRut(String rut){
+        return justificativoRepository.findByRutEmpleado(rut);
+    }
+
 }

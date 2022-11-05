@@ -43,10 +43,10 @@ public class FileController {
         return ResponseEntity.ok(marca);
     }
 
-    @Autowired
-    MarcasRelojRepository marcasRelojRepository;
-    @GetMapping
-    public List<MarcasRelojEntity> obtenerMarcasReloj(){
-        return marcasRelojRepository.findAll();
+    @GetMapping("/{rut}")
+    public ResponseEntity<List<MarcasRelojEntity>> obtenerMarcasRelojPorRut(@PathVariable String rut){
+        List<MarcasRelojEntity> marcas = marcasRelojService.marcasRelojPorRut(rut);
+        return ResponseEntity.ok(marcas);
     }
+
 }

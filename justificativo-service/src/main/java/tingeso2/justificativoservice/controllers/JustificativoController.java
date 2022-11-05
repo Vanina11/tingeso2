@@ -1,6 +1,7 @@
 package tingeso2.justificativoservice.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tingeso2.justificativoservice.entities.JustificativoEntity;
 import tingeso2.justificativoservice.services.JustificativoService;
@@ -19,8 +20,17 @@ public class JustificativoController {
         return justificativoService.getJustificativos();
     }
 
+    @GetMapping("/{rut}")
+    public ResponseEntity<List<JustificativoEntity>> getJustificativoPorRut(@PathVariable String rut){
+        List<JustificativoEntity> justificativo = justificativoService.obtenerJustificativoPorRut(rut);
+        return ResponseEntity.ok(justificativo);
+    }
+
     @PostMapping
-    public void justificativo(@RequestParam("fecha") String fecha, @RequestParam("rut") String rut) {
+    public ResponseEntity<JustificativoEntity> justificativo(@RequestBody JustificativoEntity justificativo) {
+        String rut = justificativo.getRutEmpleado();
+        String fecha = justificativo.getFecha();
         justificativoService.guardarJustificativo(fecha, rut);
+        return ResponseEntity.ok(justificativo);
     }
 }

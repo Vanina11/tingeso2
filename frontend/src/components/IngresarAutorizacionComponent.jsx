@@ -9,8 +9,8 @@ class IngresarAutorizacionComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rut: "",
-      fecha: "",
+      rutEmpleado: "",
+      mes: "",
       horas: ""
     }
     this.changeRutHandler = this.changeRutHandler.bind(this);
@@ -19,11 +19,11 @@ class IngresarAutorizacionComponent extends Component {
   }
 
   changeRutHandler = (event) => {
-    this.setState({ rut: event.target.value });
+    this.setState({ rutEmpleado: event.target.value });
   }
 
   changeFechaHandler = (event) => {
-    this.setState({ fecha: event.target.value });
+    this.setState({ mes: event.target.value });
   }
 
   changeHorasHandler = (event) => {
@@ -32,12 +32,17 @@ class IngresarAutorizacionComponent extends Component {
 
   ingresarAutorizacion = (e) => {
     e.preventDefault();
-    let autorizacion = { rut: this.state.rut, fecha: this.state.fecha, horas: this.state.horas };
+    let autorizacion = { rutEmpleado: this.state.rutEmpleado, mes: this.state.mes, horas: this.state.horas };
     console.log("autorizacion => " + JSON.stringify(autorizacion));
     IngresarAutorizacionService.ingresarAutorizacion(autorizacion).then(res => {
-      this.props.history.push('/');
+      window.location.href="/";
     });
   }
+
+  volverInicio = (e) => {
+    e.preventDefault();
+    window.location.href="/";
+  };
 
   render() {
     return (
@@ -51,12 +56,12 @@ class IngresarAutorizacionComponent extends Component {
               <br />
               <br />
               <Form>
-      <Form.Group className="mb-3" controlId="rut" onChange={this.changeRutHandler}>
+      <Form.Group className="mb-3" controlId="rutEmpleado" onChange={this.changeRutHandler}>
         <Form.Label as="h6">Rut</Form.Label>
         <Form.Control type="rut" placeholder="Ingrese el rut del empleado XX.XXX.XXX-X" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="fecha" onChange={this.changeFechaHandler}>
-        <Form.Label as="h6">Fecha de la ausencia</Form.Label>
+      <Form.Group className="mb-3" controlId="mes" onChange={this.changeFechaHandler}>
+        <Form.Label as="h6">Fecha</Form.Label>
         <Form.Control type="fecha" placeholder="Ingrese la fecha AAAA/MM/DD" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="horas" onChange={this.changeHorasHandler}>
@@ -66,9 +71,21 @@ class IngresarAutorizacionComponent extends Component {
     </Form>
             </Card.Text>
             <br />
+            <div className="d-flex justify-content-between">
             <Button className="boton" onClick={this.ingresarAutorizacion}>
                 <img src="/upload.png" alt="upload" width="20" height="20" className="d-inline-block align-top upload img-fluid" />{' '}
                 Ingresar</Button>
+                <Button className="boton2" onClick={this.volverInicio}>
+              <img
+                src="/volver.svg"
+                alt="upload"
+                width="20"
+                height="20"
+                className="d-inline-block align-top upload img-fluid"
+              />{" "}
+              Volver a inicio
+            </Button>
+            </div>
           </Card.Body>
         </Card>
       </div>

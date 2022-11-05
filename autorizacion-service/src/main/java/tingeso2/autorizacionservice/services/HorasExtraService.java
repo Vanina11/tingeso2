@@ -7,6 +7,8 @@ import tingeso2.autorizacionservice.models.EmpleadoModel;
 import tingeso2.autorizacionservice.models.MarcasRelojModel;
 import tingeso2.autorizacionservice.repositories.HorasExtraRepository;
 
+import java.util.List;
+
 @Service
 public class HorasExtraService {
     private static final Integer HORA_SALIDA = 18;
@@ -69,5 +71,9 @@ public class HorasExtraService {
         } else {
             return false;
         }
+    }
+
+    public HorasExtraEntity obtenerHorasExtraPorRut(String rut){
+        return horasExtraRepository.findByRutEmpleado(rut);
     }
 }

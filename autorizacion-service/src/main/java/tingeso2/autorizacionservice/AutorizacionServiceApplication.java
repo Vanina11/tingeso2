@@ -14,15 +14,4 @@ public class AutorizacionServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AutorizacionServiceApplication.class, args);
 	}
-
-	@Bean
-	public WebMvcConfigurer configure() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry reg) {
-				reg.addMapping("/**").allowedOrigins("*");
-			}
-		};
-
-	}
 }

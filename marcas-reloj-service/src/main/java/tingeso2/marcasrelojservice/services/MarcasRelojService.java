@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -124,5 +125,9 @@ public class MarcasRelojService {
 
     public MarcasRelojEntity marcaRelojPorFechaYRut(String fecha, String rut) {
         return marcasRelojRepository.findByFechaAndRutEmpleado(fecha, rut);
+    }
+
+    public List<MarcasRelojEntity> marcasRelojPorRut(String rut) {
+        return marcasRelojRepository.findByRutEmpleado(rut);
     }
 }

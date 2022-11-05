@@ -5,6 +5,11 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
 class CargarArchivoComponent extends Component {
+  volverInicio = (e) => {
+    e.preventDefault();
+    window.location.href="/";
+  };
+
   render() {
     return (
       <div className="home">
@@ -21,9 +26,21 @@ class CargarArchivoComponent extends Component {
                 </Form.Text>
               </Form.Group>
             </Card.Text>
+            <div className="d-flex justify-content-between">
             <Button className="boton">
                 <img src="/upload.png" alt="upload" width="20" height="20" className="d-inline-block align-top upload img-fluid" />{' '}
                 Subir</Button>
+                <Button className="boton2" onClick={this.volverInicio}>
+              <img
+                src="/volver.svg"
+                alt="upload"
+                width="20"
+                height="20"
+                className="d-inline-block align-top upload img-fluid"
+              />{" "}
+              Volver a inicio
+            </Button>
+            </div>
           </Card.Body>
         </Card>
       </div>

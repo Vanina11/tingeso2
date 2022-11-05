@@ -1,6 +1,7 @@
 :root {
     --fondo: #F2EFEB;
     --nav: #819FA6;
+    --nav2:#597379;
     --texto: #1F2024;
     --card: #BFB7B0;
     --boton: #8C7974;
@@ -13,10 +14,10 @@
 
 .home {
   background-color: var(--fondo);
-  width: 100vw;
-  height: 100vh;
-  flex-direction: column;
-  display: flex;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
 }
 
 .card {
@@ -30,10 +31,28 @@
     border-color: var(--boton) !important;
 }
 
+.boton2 {
+    background-color: var(--nav) !important;
+    border-color: var(--nav) !important;
+}
+
 .boton:hover {
     background-color: var(--cafe) !important;
 }
 
+.boton2:hover {
+    background-color: var(--nav2) !important;
+}
+
 .upload{
     filter: invert(1);
+}
+
+.img {
+    width: auto;
+}
+
+.card2 {    
+    background-color: var(--card) !important;
+    margin: 150px;
 }
