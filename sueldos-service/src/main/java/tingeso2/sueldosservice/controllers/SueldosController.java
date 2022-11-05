@@ -17,4 +17,9 @@ public class SueldosController {
         sueldosService.calcularSueldos();
     }
 
+    @GetMapping("/eliminar")
+    public void eliminarSueldos(){
+        sueldosService.eliminarSueldos();
+    }
+
 }

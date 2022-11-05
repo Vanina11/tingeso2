@@ -30,4 +30,9 @@ public class HorasExtraController {
         return ResponseEntity.ok(horasExtra);
     }
 
+    @GetMapping("/eliminar")
+    public void eliminarHorasExtra(){
+        horasExtraService.eliminarHorasExtra();
+    }
+
 }

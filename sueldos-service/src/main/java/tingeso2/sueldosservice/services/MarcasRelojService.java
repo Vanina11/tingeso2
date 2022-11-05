@@ -15,4 +15,8 @@ public class MarcasRelojService {
     public MarcasRelojModel[] obtenerMarcasRelojPorEmpleado(String rut){
         return restTemplate.getForObject("http://marcas-reloj-service/marcas-reloj/" + rut, MarcasRelojModel[].class);
     }
+
+    public void eliminarMarcasReloj(){
+        restTemplate.getForObject("http://marcas-reloj-service/marcas-reloj/eliminar", void.class);
+    }
 }

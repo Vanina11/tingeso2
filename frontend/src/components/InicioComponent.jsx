@@ -3,6 +3,7 @@ import NavbarComponent from "./NavbarComponent";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import CalcularSueldosService from "../services/CalcularSueldosService";
+import LimpiarRegistroService from "../services/LimpiarRegistroService";
 
 class InicioComponent extends Component {
 
@@ -40,7 +41,9 @@ class InicioComponent extends Component {
 
   limpiarRegistros = (e) => {
     e.preventDefault();
-    window.location.href="/limpiar-registros";
+    LimpiarRegistroService.limpiarRegistros().then((res) => {
+      window.location.href="/limpiar-registros";
+    });
   };
 
   render() {

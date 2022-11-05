@@ -19,4 +19,8 @@ public class EmpleadoService {
     public EmpleadoModel[] obtenerEmpleados(){
         return restTemplate.getForObject("http://empleado-service/empleado", EmpleadoModel[].class);
     }
+
+    public void eliminarEmpleados(){
+        restTemplate.getForObject("http://empleado-service/empleado/eliminar", void.class);
+    }
 }

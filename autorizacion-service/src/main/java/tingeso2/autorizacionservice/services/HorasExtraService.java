@@ -76,4 +76,8 @@ public class HorasExtraService {
     public HorasExtraEntity obtenerHorasExtraPorRut(String rut){
         return horasExtraRepository.findByRutEmpleado(rut);
     }
+
+    public void eliminarHorasExtra(){
+        horasExtraRepository.deleteAll();
+    }
 }

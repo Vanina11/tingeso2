@@ -15,4 +15,8 @@ public class HorasExtraService {
     public HorasExtraModel obtenerHorasExtraPorRut(String rut){
         return restTemplate.getForObject("http://autorizacion-service/autorizacion/" + rut, HorasExtraModel.class);
     }
+
+    public void eliminarHorasExtra(){
+        restTemplate.getForObject("http://autorizacion-service/autorizacion/eliminar", void.class);
+    }
 }

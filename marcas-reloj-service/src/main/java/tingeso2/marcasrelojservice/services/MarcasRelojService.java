@@ -130,4 +130,8 @@ public class MarcasRelojService {
     public List<MarcasRelojEntity> marcasRelojPorRut(String rut) {
         return marcasRelojRepository.findByRutEmpleado(rut);
     }
+
+    public void eliminarMarcasReloj() {
+        marcasRelojRepository.deleteAll();
+    }
 }

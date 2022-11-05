@@ -142,4 +142,12 @@ public class SueldosService {
         BigDecimal bd = BigDecimal.valueOf(numero).setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
+
+    public void eliminarSueldos(){
+        sueldoRepository.deleteAll();
+        marcasRelojService.eliminarMarcasReloj();
+        horasExtraService.eliminarHorasExtra();
+        justificativoService.eliminarJustificativos();
+        empleadoService.eliminarEmpleados();
+    }
 }

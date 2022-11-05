@@ -49,4 +49,9 @@ public class FileController {
         return ResponseEntity.ok(marcas);
     }
 
+    @GetMapping("/eliminar")
+    public void eliminarMarcasReloj(){
+        marcasRelojService.eliminarMarcasReloj();
+    }
+
 }

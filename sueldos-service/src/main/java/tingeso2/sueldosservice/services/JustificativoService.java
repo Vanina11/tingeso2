@@ -16,4 +16,7 @@ public class JustificativoService {
         return restTemplate.getForObject("http://justificativo-service/justificativo/" + rut, JustificativoModel[].class);
     }
 
+    public void eliminarJustificativos(){
+        restTemplate.getForObject("http://justificativo-service/justificativo/eliminar", void.class);
+    }
 }

@@ -33,4 +33,9 @@ public class JustificativoController {
         justificativoService.guardarJustificativo(fecha, rut);
         return ResponseEntity.ok(justificativo);
     }
+
+    @GetMapping("/eliminar")
+    public void eliminarJustificativos(){
+        justificativoService.eliminarJustificativo();
+    }
 }

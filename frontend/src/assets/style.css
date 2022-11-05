@@ -56,3 +56,20 @@
     background-color: var(--card) !important;
     margin: 150px;
 }
+
+th {
+    font-size: 14px;
+    border: 1px solid var(--texto) !important;
+}
+
+thead {
+    background-color: var(--nav);
+}
+
+.borde-tabla {
+    border: 1px solid var(--texto) !important;
+}
+
+td {
+    border: 1px solid var(--texto) !important;
+}

@@ -5,6 +5,9 @@ import IngresarJustificativoComponent from "./components/IngresarJustificativoCo
 import IngresarAutorizacionComponent from "./components/IngresarAutorizacionComponent";
 import InicioComponent from "./components/InicioComponent";
 import CalcularSueldosComponent from "./components/CalcularSueldosComponent";
+import IngresarEmpleadoComponent from "./components/IngresarEmpleadoComponent";
+import LimpiarRegistrosComponent from "./components/LimpiarRegistrosComponent";
+import MostrarSueldosComponent from "./components/MostrarSueldosComponent";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/ingresar-justificativo" element={<IngresarJustificativoComponent />} />
           <Route path="/ingresar-autorizacion" element={<IngresarAutorizacionComponent />} />
           <Route path="/calcular-sueldos" element={<CalcularSueldosComponent />} />
+          <Route path="/ingresar-empleado" element={<IngresarEmpleadoComponent />} />
+          <Route path="/limpiar-registros" element={<LimpiarRegistrosComponent />} />
+          <Route path="/mostrar-planilla" element={<MostrarSueldosComponent />} />
         </Routes>
       </BrowserRouter>
     </div>

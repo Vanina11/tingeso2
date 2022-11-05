@@ -51,14 +51,13 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleado);
     }
     @PostMapping
-    @RolesAllowed("admin")
+    //@RolesAllowed("admin")
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
     }
 
-    @GetMapping("/e")
-    @RolesAllowed("admin")
-    public List<EmpleadoEntity> obteneEmpleados(){
-        return empleadoService.obtenerEmpleados();
+    @GetMapping("/eliminar")
+    public void eliminarEmpleados(){
+        empleadoService.eliminarEmpleados();
     }
 }
