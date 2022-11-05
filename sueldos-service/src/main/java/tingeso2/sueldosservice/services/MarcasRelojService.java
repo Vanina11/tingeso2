@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tingeso2.sueldosservice.models.MarcasRelojModel;
 
-import java.util.List;
-
 @Service
 public class MarcasRelojService {
     @Autowired

@@ -46,4 +46,8 @@ spring:
           uri: lb://marcas-reloj-service
           predicates:
             - Path=/marcas-reloj/**
+        - id: plantilla-service
+          uri: lb://plantilla-service
+          predicates:
+            - Path=/plantilla-service/**
         

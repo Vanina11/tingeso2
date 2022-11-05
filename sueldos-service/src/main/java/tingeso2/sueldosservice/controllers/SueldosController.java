@@ -22,4 +22,9 @@ public class SueldosController {
         sueldosService.eliminarSueldos();
     }
 
+    @GetMapping("/obtener-sueldos")
+    public void obtenerSueldos(){
+        sueldosService.obtenerSueldos();
+    }
+
 }
