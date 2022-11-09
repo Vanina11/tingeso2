@@ -17,6 +17,9 @@ public class HorasExtraController {
     @GetMapping("/{rut}")
     public ResponseEntity<HorasExtraEntity> getHorasExtraPorRut(@PathVariable String rut){
         HorasExtraEntity horasExtra = horasExtraService.obtenerHorasExtraPorRut(rut);
+        if (horasExtra == null){
+            return null;
+        }
         return ResponseEntity.ok(horasExtra);
     }
 
@@ -26,7 +29,6 @@ public class HorasExtraController {
         String fecha = horasExtra.getMes();
         int horas = horasExtra.getHoras();
         horasExtraService.guardarHorasExtra(horas, rut, fecha);
-
         return ResponseEntity.ok(horasExtra);
     }
 

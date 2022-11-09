@@ -23,4 +23,5 @@ public class EmpleadoService {
     public void eliminarEmpleados(){
         restTemplate.getForObject("http://empleado-service/empleado/eliminar", void.class);
     }
+
 }

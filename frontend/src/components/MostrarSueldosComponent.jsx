@@ -5,6 +5,19 @@ import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 
 class MostrarSueldosComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sueldos: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:8080/sueldos/mostrar-sueldos")
+      .then((response) => response.json())
+      .then((data) => this.setState({ sueldos: data }));
+  }
+
   volverInicio = (e) => {
     e.preventDefault();
     window.location.href = "/";
@@ -36,21 +49,23 @@ class MostrarSueldosComponent extends Component {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
+                {this.state.sueldos.map((sueldo) => (
+                  <tr key={sueldo.rut}>
+                    <td>{sueldo.rut}</td>
+                    <td>{sueldo.nombres}</td>
+                    <td>{sueldo.apellidos}</td>
+                    <td>{sueldo.categoria}</td>
+                    <td>{sueldo.aniosServicio}</td>
+                    <td>{sueldo.sueldoFijo}</td>
+                    <td>{sueldo.montoBonificacion}</td>
+                    <td>{sueldo.montoHorasExtra}</td>
+                    <td>{sueldo.montoDescuentos}</td>
+                    <td>{sueldo.sueldoBruto}</td>
+                    <td>{sueldo.cotizacionPrevisional}</td>
+                    <td>{sueldo.cotizacionSalud}</td>
+                    <td>{sueldo.sueldoFinal}</td>
+                  </tr>
+                ))}
               </tbody>
             </Table>
             <div className="d-flex justify-content-between">

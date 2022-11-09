@@ -22,3 +22,10 @@ spring:
 
 file:
   upload-dir: ./src/main/resources/cargas
+
+keycloak:
+  realm: mueblesstgo
+  auth-server-url: http://localhost:8082/
+  resource: springboot-keycloak
+  public-client: true
+  bearer-only: true

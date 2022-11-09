@@ -15,8 +15,9 @@ public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
 
+    // ELIMINAR //
     @GetMapping
-    //@RolesAllowed("admin")
+    @RolesAllowed("admin")
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
         List<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
         if(empleados.isEmpty())
@@ -25,7 +26,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{rut}")
-    //@RolesAllowed("admin")
+    @RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> obtenerPorRut(@PathVariable("rut") String rut){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         if(empleado == null)

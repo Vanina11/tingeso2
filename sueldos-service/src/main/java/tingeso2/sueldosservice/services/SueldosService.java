@@ -86,6 +86,9 @@ public class SueldosService {
 
     public Integer totalHorasExtras(EmpleadoModel empleado){
         HorasExtraModel horasExtras = horasExtraService.obtenerHorasExtraPorRut(empleado.getRut());
+        if(horasExtras == null){
+            return 0;
+        }
         return horasExtras.getHoras();
     }
 

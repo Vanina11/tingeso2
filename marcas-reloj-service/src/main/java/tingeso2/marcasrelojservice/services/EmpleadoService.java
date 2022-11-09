@@ -1,5 +1,6 @@
 package tingeso2.marcasrelojservice.services;
 
+import org.keycloak.adapters.jetty.core.AbstractKeycloakJettyAuthenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,6 +10,8 @@ import tingeso2.marcasrelojservice.models.EmpleadoModel;
 public class EmpleadoService {
     @Autowired
     RestTemplate restTemplate;
+
+    // Send Access token to Employee Service
 
     public EmpleadoModel empleadoPorRut(String rut){
         return restTemplate.getForObject("http://empleado-service/empleado/" + rut, EmpleadoModel.class);
