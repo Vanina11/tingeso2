@@ -62,7 +62,9 @@ class IngresarEmpleadoComponent extends Component {
             (res) => {
                 window.location.href="/";
             }
-        );
+        ).catch((error) => {
+            window.location.href="/error";
+        });
     };
 
     volverInicio = (e) => {

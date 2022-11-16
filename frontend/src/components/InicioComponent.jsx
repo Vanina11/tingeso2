@@ -16,6 +16,8 @@ class InicioComponent extends Component {
     e.preventDefault();
     CalcularSueldosService.calcularSueldos().then((res) => {
       window.location.href="/calcular-sueldos";
+    }).catch((error) => {
+      window.location.href="/error";
     });
   };
 

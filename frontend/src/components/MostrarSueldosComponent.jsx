@@ -3,6 +3,7 @@ import NavbarComponent from "./NavbarComponent";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
+import MostrarSueldosService from "../services/MostrarSueldosService";
 
 class MostrarSueldosComponent extends Component {
   constructor(props) {
@@ -12,10 +13,13 @@ class MostrarSueldosComponent extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch("http://localhost:8080/sueldos/mostrar-sueldos")
-      .then((response) => response.json())
-      .then((data) => this.setState({ sueldos: data }));
+  async componentDidMount() {
+    MostrarSueldosService.getSueldos().then((res) => {
+      this.setState({ sueldos: res.data });
+      console.log(this.state.sueldos);
+    }).catch((error) => {
+      window.location.href = "/error";
+    });
   }
 
   volverInicio = (e) => {

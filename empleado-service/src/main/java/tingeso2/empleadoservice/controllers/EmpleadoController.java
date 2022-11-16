@@ -15,7 +15,6 @@ public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
 
-    // ELIMINAR //
     @GetMapping
     //@RolesAllowed("admin")
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
@@ -26,7 +25,7 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{rut}")
-    @RolesAllowed("admin")
+    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> obtenerPorRut(@PathVariable("rut") String rut){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         if(empleado == null)
@@ -52,7 +51,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleado);
     }
     @PostMapping
-    //@RolesAllowed("admin")
+    @RolesAllowed("admin")
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
     }

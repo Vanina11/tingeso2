@@ -12,3 +12,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+keycloak:
+  realm: mueblesstgo
+  auth-server-url: http://localhost:8082/
+  resource: springboot-keycloak
+  public-client: true
+  bearer-only: true

@@ -9,6 +9,7 @@ import tingeso2.sueldosservice.entities.SueldosEntity;
 import tingeso2.sueldosservice.services.EmpleadoService;
 import tingeso2.sueldosservice.services.SueldosService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -21,22 +22,19 @@ public class SueldosController {
     EmpleadoService empleadoService;
 
     @GetMapping
+    @RolesAllowed("admin")
     public void calcularSueldos(){
         sueldosService.calcularSueldos();
     }
 
     @GetMapping("/eliminar")
+    @RolesAllowed("admin")
     public void eliminarSueldos(){
         sueldosService.eliminarSueldos();
     }
-
-    @GetMapping("/obtener-sueldos")
-    public ResponseEntity<List<SueldosEntity>> obtenerSueldos(){
-        List<SueldosEntity> sueldos = sueldosService.obtenerSueldos();
-        return ResponseEntity.ok(sueldos);
-    }
     
     @GetMapping("/mostrar-sueldos")
+    @RolesAllowed("admin")
     public List<SueldosEntity> mostrarSueldos(){
         return sueldosService.obtenerSueldos();
     }

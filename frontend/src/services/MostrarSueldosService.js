@@ -1,10 +1,11 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8080/sueldos/mostrar-sueldos";
+const token = localStorage.getItem('react-token');
 
 class MostrarSueldosService {
-    getSueldos() {
-        return axios.get(API_URL);
+    async getSueldos() {
+        return axios.get(API_URL, {headers: {Authorization: `Bearer ${token}`}});
     }
 }
 
