@@ -14,6 +14,8 @@ keycloak.init({ onLoad: keycloakConfig.onLoad }).then((authenticated) => {
     localStorage.setItem("react-token", keycloak.token);
     localStorage.setItem("react-refresh-token", keycloak.refreshToken);
     localStorage.setItem("react-id-token", keycloak.idToken);
+    localStorage.setItem("name", keycloak.tokenParsed.name);
+    console.log(keycloak.idToken);
   } else {
     keycloak.login();
   }
