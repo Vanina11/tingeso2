@@ -63,7 +63,7 @@ class IngresarEmpleadoComponent extends Component {
                 window.location.href="/";
             }
         ).catch((error) => {
-            window.location.href="/error";
+            //window.location.href="/error";
         });
     };
 

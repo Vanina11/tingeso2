@@ -19,3 +19,9 @@ keycloak:
   resource: springboot-keycloak
   public-client: true
   bearer-only: true
+
+manage:
+    endpoints:
+        web:
+        exposure:
+            include: "*"
