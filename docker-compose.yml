@@ -16,6 +16,9 @@ services:
       - "8761:8761"
     depends_on:
       - config-service
+    environment:
+      - spring.cloud.config.uri=http://config-service:8081
+      - spring.config.import=optional:configserver:http://config-service:8081
 
   empleado-bd:
     container_name: empleado-bd
