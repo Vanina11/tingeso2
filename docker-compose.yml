@@ -7,7 +7,39 @@ services:
     restart: always
     ports:
       - "8081:8081"
-    
+
+  eureka-service:
+    container_name: eureka-service
+    image: vcchavez/eureka-service:latest
+    restart: always
+    ports:
+      - "8761:8761"
+    depends_on:
+      - config-service
+
+  empleado-bd:
+    container_name: empleado-bd
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: empleado
+    volumes:
+      - /var/lib/postgresql/data
+
+  empleado-service:
+    container_name: empleado-service
+    image: vcchavez/empleado-service:latest
+    restart: always
+    ports:
+      - "8090:8090"
+    depends_on:
+      - config-service
+      - eureka-service
+      - empleado-bd
 
 
   
