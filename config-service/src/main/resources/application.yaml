@@ -7,6 +7,7 @@ spring:
         git:
           default-label: main
           uri: https://github.com/Vanina11/tingeso2
+          clone-on-start: true
           search-paths: config-data
   application:
     name: config-service
