@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  config-service:
+    container_name: config-service
+    image: vcchavez/config-service:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    
+
+
+  
