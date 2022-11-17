@@ -43,6 +43,7 @@ services:
       - config-service
       - eureka-service
       - empleado-bd
-
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
 
   

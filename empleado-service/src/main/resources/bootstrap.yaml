@@ -5,10 +5,14 @@ spring:
     config:
       enabled: true
       uri: http://localhost:8081
+  #datasource:
+  #  url: jdbc:postgresql://localhost:5432/empleados
+  #  username: postgres
+  #  password: 123
   datasource:
-    url: jdbc:postgresql://localhost:5432/empleados
-    username: postgres
-    password: 123
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
