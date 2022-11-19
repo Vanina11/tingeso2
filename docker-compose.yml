@@ -63,6 +63,91 @@ services:
         max_attempts: 3
         window: 120s
 
+  marcas-reloj-bd:
+    container_name: marcas-reloj-bd
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: marcas-reloj
+    volumes:
+      - /var/lib/postgresql/data
+
+  marcas-reloj-service:
+    container_name: marcas-reloj-service
+    image: vcchavez/marcas-reloj-service:latest
+    restart: on-failure
+    ports:
+      - "8091:8091"
+    depends_on:
+    - marcas-reloj-bd
+    - config-service
+    - eureka-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - spring.cloud.config.uri=http://config-service:8081
+      - spring.config.import=optional:configserver:http://config-service:8081
+      - spring.config.fail-fast=true
+      - spring.profiles.active=default
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://marcas-reloj-bd:5432/marcas-reloj
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HOSTNAME=config-service
+      - EUREKA=eureka-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+
+  justificativo-bd:
+    container_name: justificativo-bd
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: justificativo
+    volumes:
+      - /var/lib/postgresql/data
+
+  justificativo-service:
+    container_name: justificativo-service
+    image: vcchavez/justificativo-service:latest
+    restart: on-failure
+    ports:
+      - "8092:8092"
+    depends_on:
+    - justificativo-bd
+    - config-service
+    - eureka-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - spring.cloud.config.uri=http://config-service:8081
+      - spring.config.import=optional:configserver:http://config-service:8081
+      - spring.config.fail-fast=true
+      - spring.profiles.active=default
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://justificativo-bd:5432/justificativos
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HOSTNAME=config-service
+      - EUREKA=eureka-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
   gateway-service:
     container_name: gateway-service
     image: vcchavez/gateway-service:latest
