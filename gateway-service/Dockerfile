@@ -1,5 +1,5 @@
 FROM openjdk:17
-ARG JAR_FILE=target/GatewayServiceApp.jar
-COPY ${JAR_FILE} GatewayServiceApp.jar
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} GatewayServiceApplication.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/GatewayServiceApp.jar"]
+ENTRYPOINT ["java","-jar","/GatewayServiceApplication.jar"]
