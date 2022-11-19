@@ -45,5 +45,9 @@ services:
       - empleado-bd
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://empleado-bd:5432/empleado
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   
