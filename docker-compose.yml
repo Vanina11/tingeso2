@@ -78,4 +78,7 @@ services:
       - spring.cloud.config.uri=http://config-service:8081
       - spring.config.import=optional:configserver:http://config-service:8081
       - HOSTNAME=config-service
+      - EUREKA=eureka-service
+      - spring.config.fail-fast=true
+      - spring.profiles.active=default
   
