@@ -49,6 +49,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    links:
+      - empleado-bd
+      - eureka-service
 
   gateway-service:
     container_name: gateway-service
@@ -62,5 +65,7 @@ services:
       - empleado-service
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+    links:
+      - eureka-service
 
   
