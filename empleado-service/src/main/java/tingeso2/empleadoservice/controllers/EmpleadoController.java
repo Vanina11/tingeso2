@@ -15,6 +15,11 @@ public class EmpleadoController {
     @Autowired
     EmpleadoService empleadoService;
 
+    @GetMapping("/a")
+    public int ayuda() {
+        return 10;
+    }
+
     @GetMapping
     //@RolesAllowed("admin")
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
