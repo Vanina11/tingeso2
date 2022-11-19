@@ -4,7 +4,7 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8081
+      uri: host.docker.internal:8081
       retry:
         maxAttempts: 200
         maxInterval: 1000
