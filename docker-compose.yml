@@ -37,13 +37,13 @@ services:
   empleado-service:
     container_name: empleado-service
     image: vcchavez/empleado-service:latest
-    restart: always
+    restart: on-failure
     ports:
       - "8090:8090"
     depends_on:
-      - config-service
-      - eureka-service
-      - empleado-bd
+    - empleado-bd
+    - config-service
+    - eureka-service
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
       - spring.cloud.config.uri=http://config-service:8081
@@ -52,20 +52,27 @@ services:
       - SPRING_DATASOURCE_PASSWORD=123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - HOSTNAME=config-service
+      - EUREKA=eureka-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
 
-  gateway-service:
-    container_name: gateway-service
-    image: vcchavez/gateway-service:latest
-    restart: always
-    ports:
-      - "8080:8080"
-    depends_on:
-      - config-service
-      - eureka-service
-      - empleado-service
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
-    links:
-      - eureka-service
+  #gateway-service:
+  #  container_name: gateway-service
+  #  image: vcchavez/gateway-service:latest
+  #  restart: always
+  #  ports:
+  #    - "8080:8080"
+  #  depends_on:
+  #    - config-service
+  #    - eureka-service
+  #    - empleado-service
+  #  environment:
+  #    - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+  #  links:
+  #    - eureka-service
 
   
