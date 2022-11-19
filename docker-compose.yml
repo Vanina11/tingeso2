@@ -7,6 +7,7 @@ services:
     restart: always
     ports:
       - "8081:8081"
+    restart: on-failure
 
   eureka-service:
     container_name: eureka-service
