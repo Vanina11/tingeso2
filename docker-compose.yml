@@ -19,6 +19,7 @@ services:
     environment:
       - spring.cloud.config.uri=http://config-service:8081
       - spring.config.import=optional:configserver:http://config-service:8081
+    hostname: eureka-service
 
   empleado-bd:
     container_name: empleado-bd
@@ -45,10 +46,12 @@ services:
       - empleado-bd
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - spring.cloud.config.uri=http://config-service:8081
       - SPRING_DATASOURCE_URL=jdbc:postgresql://empleado-bd:5432/empleado
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HOSTNAME=config-service
 
   gateway-service:
     container_name: gateway-service
