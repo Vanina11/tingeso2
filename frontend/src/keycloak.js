@@ -1,7 +1,7 @@
 import Keycloak from "keycloak-js";
 
 const keycloakConfig = {
-  url: "http://localhost:8082",
+  url: "http://host.docker.internal:8082",
   realm: "mueblesstgo",
   clientId: "springboot-keycloak",
   onLoad: "login-required",

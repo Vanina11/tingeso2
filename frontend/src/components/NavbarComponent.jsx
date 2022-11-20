@@ -8,7 +8,7 @@ function NavbarComponent() {
     <>
       <Navbar className="navbar">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
             alt=""
             src="/logo.png"
@@ -17,7 +17,6 @@ function NavbarComponent() {
             className="d-inline-block align-top logo img-fluid"
             />{' '}
             Muebles Stgo
-            ${name}
 
           </Navbar.Brand>
         </Container>
