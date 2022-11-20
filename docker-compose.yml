@@ -105,7 +105,6 @@ services:
         max_attempts: 3
         window: 120s
 
-
   justificativo-bd:
     container_name: justificativo-bd
     image: postgres:latest
@@ -115,7 +114,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: justificativo
+      POSTGRES_DB: justificativos
     volumes:
       - /var/lib/postgresql/data
 
@@ -136,6 +135,90 @@ services:
       - spring.config.fail-fast=true
       - spring.profiles.active=default
       - SPRING_DATASOURCE_URL=jdbc:postgresql://justificativo-bd:5432/justificativos
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HOSTNAME=config-service
+      - EUREKA=eureka-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  autorizacion-bd:
+    container_name: autorizacion-bd
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: autorizacion
+    volumes:
+      - /var/lib/postgresql/data
+
+  autorizacion-service:
+    container_name: autorizacion-service
+    image: vcchavez/autorizacion-service:latest
+    restart: on-failure
+    ports:
+      - "8093:8093"
+    depends_on:
+    - autorizacion-bd
+    - config-service
+    - eureka-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - spring.cloud.config.uri=http://config-service:8081
+      - spring.config.import=optional:configserver:http://config-service:8081
+      - spring.config.fail-fast=true
+      - spring.profiles.active=default
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://autorizacion-bd:5432/autorizacion
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=123
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - HOSTNAME=config-service
+      - EUREKA=eureka-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+  sueldos-bd:
+    container_name: sueldos-bd
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: sueldos
+    volumes:
+      - /var/lib/postgresql/data
+
+  sueldos-service:
+    container_name: sueldos-service
+    image: vcchavez/sueldos-service:latest
+    restart: on-failure
+    ports:
+      - "8094:8094"
+    depends_on:
+    - sueldos-bd
+    - config-service
+    - eureka-service
+    environment:
+      - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
+      - spring.cloud.config.uri=http://config-service:8081
+      - spring.config.import=optional:configserver:http://config-service:8081
+      - spring.config.fail-fast=true
+      - spring.profiles.active=default
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://sueldos-bd:5432/sueldos
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=123
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
