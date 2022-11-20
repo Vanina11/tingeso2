@@ -72,6 +72,7 @@ public class MarcasRelojService {
         String rut = datos[2];
         // Si el empleado existe, se crea la marca de reloj
         EmpleadoModel empleado = empleadoService.empleadoPorRut(rut);
+        System.out.println("retorna los empleados");
         MarcasRelojEntity marcas = marcasRelojRepository.findByFechaAndRutEmpleado(fecha, rut);
         if (empleado != null){
             if(marcas == null) {
