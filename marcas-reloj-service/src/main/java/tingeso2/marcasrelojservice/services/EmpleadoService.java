@@ -14,6 +14,7 @@ public class EmpleadoService {
     // Send Access token to Employee Service
 
     public EmpleadoModel empleadoPorRut(String rut){
+        System.out.println("llega a empleado por rut");
         return restTemplate.getForObject("http://empleado-service/empleado/" + rut, EmpleadoModel.class);
     }
 

@@ -24,6 +24,7 @@ public class EmpleadoController {
     //@RolesAllowed("admin")
     public ResponseEntity<List<EmpleadoEntity>> obtenerEmpleados(){
         List<EmpleadoEntity> empleados = empleadoService.obtenerEmpleados();
+        System.out.println("llega a obtener empleados");
         if(empleados.isEmpty())
             return ResponseEntity.noContent().build();
         return ResponseEntity.ok(empleados);
