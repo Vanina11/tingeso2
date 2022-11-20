@@ -94,11 +94,12 @@ public class SueldosService {
 
     public double montoHorasExtras(EmpleadoModel empleado){
         String categoria = empleado.getCategoria();
-        switch (categoria){
-            case "A" -> { return HORAS_A; }
-            case "B" -> { return HORAS_B; }
-            case "C" -> { return HORAS_C; }
-            default -> { return 0; }
+        if(categoria.equals("A")){
+            return HORAS_A;
+        } else if(categoria.equals("B")){
+            return HORAS_B;
+        } else {
+            return HORAS_C;
         }
     }
 
@@ -133,12 +134,15 @@ public class SueldosService {
     }
 
     public Integer asignarSueldoFijo(String categoria) {
-        return switch (categoria) {
-            case "A" -> SUELDO_A;
-            case "B" -> SUELDO_B;
-            case "C" -> SUELDO_C;
-            default -> 0;
-        };
+        if(categoria.equals("A")){
+            return SUELDO_A;
+        } else if(categoria.equals("B")){
+            return SUELDO_B;
+        } else if(categoria.equals("C")){
+            return SUELDO_C;
+        } else {
+            return 0;
+        }
     }
 
     public double redondear(double numero){
