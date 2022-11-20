@@ -4,21 +4,25 @@ spring:
   cloud:
     config:
       enabled: true
-      uri: http://localhost:8081
+      #uri: http://localhost:8081
+      uri: http://${HOSTNAME:localhost}:8081
       retry:
         maxAttempts: 200
         maxInterval: 1000
   datasource:
-    url: jdbc:postgresql://localhost:5432/empleados
-    username: postgres
-    password: 123
+    url: jdbc:postgresql://${DB_HOSTNAME:localhost}:${DB_PORT:5432}/${DB_NAME:empleados}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:123}
+    #url: jdbc:postgresql://localhost:5432/empleados
+    #username: postgres
+    #password: 123
   jpa:
     hibernate:
       ddl-auto: update
 
-keycloak:
-  realm: mueblesstgo
-  auth-server-url: http://localhost:8082/
-  resource: springboot-keycloak
-  public-client: true
-  bearer-only: true
+#keycloak:
+#  realm: mueblesstgo
+#  auth-server-url: http://localhost:8082/
+#  resource: springboot-keycloak
+#  public-client: true
+#  bearer-only: true

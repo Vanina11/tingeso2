@@ -241,7 +241,7 @@ services:
       - config-service
       - eureka-service
       - empleado-service
-      - marca-reloj-service
+      - marcas-reloj-service
       - justificativo-service
       - autorizacion-service
       - sueldos-service
