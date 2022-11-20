@@ -15,17 +15,17 @@ public class EmpleadoService {
 
     public EmpleadoModel empleadoPorRut(String rut){
         System.out.println("llega a empleado por rut");
-        return restTemplate.getForObject("http://host.docker.internal:8080/empleado/" + rut, EmpleadoModel.class);
+        return restTemplate.getForObject("http://localhost:8080/empleado/" + rut, EmpleadoModel.class);
     }
 
     public void incrementaDescuentoAtraso(EmpleadoModel empleado, Integer descuento){
         empleado.setDescuentoAtraso(empleado.getDescuentoAtraso() + descuento);
-        restTemplate.put("http://host.docker.internal:8080/empleado/incrementa-atrasos/" + empleado.getRut(), empleado, EmpleadoModel.class);
+        restTemplate.put("http://localhost:8080/empleado/incrementa-atrasos/" + empleado.getRut(), empleado, EmpleadoModel.class);
     }
 
     public void incrementaInasistencias(EmpleadoModel empleado){
         empleado.setInasistencias(empleado.getInasistencias() + 1);
-        restTemplate.put("http://host.docker.internal:8080/empleado/incrementa-inasistencias/", empleado.getRut(), empleado, EmpleadoModel.class);
+        restTemplate.put("http://localhost:8080/empleado/incrementa-inasistencias/", empleado.getRut(), empleado, EmpleadoModel.class);
     }
 
 }
