@@ -1,22 +1,6 @@
 version: "3.8"
 
 services:
-  #keycloak:
-  #  container_name: keycloak
-  #  image: quay.io/keycloak/keycloak:legacy
-  #  ports:
-    #   - "8082:8080"
-    # hostname: keycloak
-    # environment:
-    #   - KEYCLOAK_USER=admin
-    #   - KEYCLOAK_PASSWORD=admin
-    #   - DB_VENDOR=POSTGRES
-    #   - DB_ADDR=postgres
-    #   - DB_DATABASE=keycloak
-    #   - DB_USER=postgres
-    #   - DB_PASSWORD=123
-    #   - KC_HTTP_PORT=8082
-
   config-service:
     container_name: config-service
     image: vcchavez/config-service:latest
@@ -52,6 +36,7 @@ services:
 
   empleado-service:
     container_name: empleado-service
+    hostname: empleado-service
     image: vcchavez/empleado-service:latest
     restart: on-failure
     ports:
@@ -60,7 +45,6 @@ services:
     - empleado-bd
     - config-service
     - eureka-service
-    #- keycloak
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
       - spring.cloud.config.uri=http://config-service:8081
@@ -73,13 +57,15 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - HOSTNAME=config-service
       - EUREKA=eureka-service
-      #- keycloak.auth-server-url=http://keycloak:8082/
     deploy:
       restart_policy:
         condition: on-failure
         delay: 5s
         max_attempts: 3
         window: 120s
+
+    links:
+      - eureka-service
 
   marcas-reloj-bd:
     container_name: marcas-reloj-bd
@@ -96,6 +82,7 @@ services:
 
   marcas-reloj-service:
     container_name: marcas-reloj-service
+    hostname: marcas-reloj-service
     image: vcchavez/marcas-reloj-service:latest
     restart: on-failure
     ports:
@@ -122,6 +109,8 @@ services:
         delay: 5s
         max_attempts: 3
         window: 120s
+    links:
+      - eureka-service
 
   justificativo-bd:
     container_name: justificativo-bd
@@ -138,6 +127,7 @@ services:
 
   justificativo-service:
     container_name: justificativo-service
+    hostname: justificativo-service
     image: vcchavez/justificativo-service:latest
     restart: on-failure
     ports:
@@ -180,6 +170,7 @@ services:
 
   autorizacion-service:
     container_name: autorizacion-service
+    hostname: autorizacion-service
     image: vcchavez/autorizacion-service:latest
     restart: on-failure
     ports:
@@ -222,6 +213,7 @@ services:
 
   sueldos-service:
     container_name: sueldos-service
+    hostname: sueldos-service
     image: vcchavez/sueldos-service:latest
     restart: on-failure
     ports:

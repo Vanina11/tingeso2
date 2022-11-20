@@ -32,6 +32,7 @@ public class EmpleadoController {
     @GetMapping("/{rut}")
     //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> obtenerPorRut(@PathVariable("rut") String rut){
+        System.out.println("llega a obtener por rut en empleado service");
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         if(empleado == null)
             return ResponseEntity.notFound().build();
@@ -56,7 +57,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleado);
     }
     @PostMapping
-    //@RolesAllowed("user")
+    @RolesAllowed("admin")
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
     }
