@@ -254,4 +254,24 @@ services:
       - spring.config.fail-fast=true
       - spring.profiles.active=default
 
+  frontend:
+    container_name: frontend
+    image: vcchavez/frontend:latest
+    restart: on-failure
+    ports:
+      - "3000:3000"
+    depends_on:
+      - config-service
+      - eureka-service
+      - empleado-service
+      - marca-reloj-service
+      - justificativo-service
+      - autorizacion-service
+      - sueldos-service
+      - gateway-service
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+
   
