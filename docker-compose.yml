@@ -241,6 +241,10 @@ services:
       - config-service
       - eureka-service
       - empleado-service
+      - marca-reloj-service
+      - justificativo-service
+      - autorizacion-service
+      - sueldos-service
     environment:
       - eureka.client.serviceUrl.defaultZone=http://eureka-service:8761/eureka
       - spring.cloud.config.uri=http://config-service:8081
@@ -249,4 +253,5 @@ services:
       - EUREKA=eureka-service
       - spring.config.fail-fast=true
       - spring.profiles.active=default
+
   
