@@ -56,7 +56,7 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleado);
     }
     @PostMapping
-    @RolesAllowed("user")
+    //@RolesAllowed("user")
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
     }
