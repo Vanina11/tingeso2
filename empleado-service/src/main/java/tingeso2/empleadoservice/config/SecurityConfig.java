@@ -1,4 +1,4 @@
-package tingeso2.empleadoservice.config;
+/*package tingeso2.empleadoservice.config;
 
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
@@ -37,4 +37,4 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         super.configure(http);
         http.csrf().disable().authorizeRequests().anyRequest().permitAll();
     }
-}
+}*/
