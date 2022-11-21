@@ -24,7 +24,7 @@ keycloak:
   bearer-only: true
 
 management:
-    endpoints:
-        web:
-        exposure:
-            include: "*"
+  endpoints:
+    web:
+      exposure:
+        include: "*"
