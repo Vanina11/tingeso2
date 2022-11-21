@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tingeso2.autorizacionservice.entities.HorasExtraEntity;
 import tingeso2.autorizacionservice.services.HorasExtraService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,7 @@ public class HorasExtraController {
     }
 
     @PostMapping
+    @RolesAllowed("admin")
     public ResponseEntity<HorasExtraEntity> horasExtra(@RequestBody HorasExtraEntity horasExtra) {
         String rut = horasExtra.getRutEmpleado();
         String fecha = horasExtra.getMes();
