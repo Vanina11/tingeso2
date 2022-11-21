@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import tingeso2.justificativoservice.entities.JustificativoEntity;
 import tingeso2.justificativoservice.services.JustificativoService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 
@@ -27,6 +28,7 @@ public class JustificativoController {
     }
 
     @PostMapping
+    @RolesAllowed("admin")
     public ResponseEntity<JustificativoEntity> justificativo(@RequestBody JustificativoEntity justificativo) {
         String rut = justificativo.getRutEmpleado();
         String fecha = justificativo.getFecha();
