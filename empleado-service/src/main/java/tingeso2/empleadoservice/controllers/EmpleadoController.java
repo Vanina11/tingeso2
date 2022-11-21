@@ -30,7 +30,6 @@ public class EmpleadoController {
     }
 
     @GetMapping("/{rut}")
-    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> obtenerPorRut(@PathVariable("rut") String rut){
         System.out.println("llega a obtener por rut en empleado service");
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
@@ -40,7 +39,6 @@ public class EmpleadoController {
     }
 
     @PutMapping("/incrementa-atrasos/{rut}")
-    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> incrementaDescuentoAtraso(@PathVariable("rut") String rut, @RequestBody EmpleadoEntity empleadoActualizado){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         empleado.setDescuentoAtraso(empleadoActualizado.getDescuentoAtraso());
@@ -49,7 +47,6 @@ public class EmpleadoController {
     }
 
     @PutMapping("/incrementa-inasistencias/{rut}")
-    //@RolesAllowed("admin")
     public ResponseEntity<EmpleadoEntity> incrementaInasistencias(@PathVariable("rut") String rut, @RequestBody EmpleadoEntity empleadoActualizado){
         EmpleadoEntity empleado = empleadoService.obtenerPorRut(rut);
         empleado.setInasistencias(empleadoActualizado.getInasistencias());
@@ -57,7 +54,6 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleado);
     }
     @PostMapping
-    @RolesAllowed("admin")
     public void guardarEmpleado(@RequestBody EmpleadoEntity empleado){
         empleadoService.guardarEmpleado(empleado);
     }
