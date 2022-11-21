@@ -12,6 +12,7 @@ import tingeso2.marcasrelojservice.services.FileResponse;
 import tingeso2.marcasrelojservice.services.FileStorageService;
 import tingeso2.marcasrelojservice.services.MarcasRelojService;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,7 @@ public class FileController {
     private MarcasRelojService marcasRelojService;
 
     @PutMapping("/subir-archivo")
+    @RolesAllowed("admin")
     public ResponseEntity<FileResponse> uploadFile(@RequestParam("file") MultipartFile file){
         String fileName = fileStorageService.storeFile(file);
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
