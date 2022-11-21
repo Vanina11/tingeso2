@@ -23,7 +23,7 @@ keycloak:
   public-client: true
   bearer-only: true
 
-manage:
+management:
     endpoints:
         web:
         exposure:
