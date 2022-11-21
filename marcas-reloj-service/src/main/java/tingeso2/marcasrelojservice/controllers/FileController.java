@@ -24,7 +24,7 @@ public class FileController {
     @Autowired
     private MarcasRelojService marcasRelojService;
 
-    @GetMapping("/subir-archivo")
+    @PutMapping("/subir-archivo")
     @RolesAllowed("admin")
     public ResponseEntity<FileResponse> uploadFile(@RequestParam("file") MultipartFile file){
         String fileName = fileStorageService.storeFile(file);
